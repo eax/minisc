@@ -50,6 +50,37 @@ azure
    AZURE_SUBSCRIPTION_ID=<your-subscription-id>
    ```
 
+## Environment Variables
+
+The following environment variables are required for the project:
+
+### Azure Authentication
+- `AZURE_TENANT_ID`: Your Azure tenant ID.
+- `AZURE_CLIENT_ID`: Your Azure client ID.
+- `AZURE_CLIENT_SECRET`: Your Azure client secret.
+- `AZURE_SUBSCRIPTION_ID`: Your Azure subscription ID.
+
+### Resource Group
+- `RESOURCE_GROUP_NAME`: The name of the Azure resource group to use or create.
+- `LOCATION`: The Azure region where resources will be deployed (e.g., `eastus`).
+
+### Network
+- `VNET_NAME`: The name of the virtual network.
+- `SUBNET_NAME`: The name of the subnet within the virtual network.
+
+### Head Node
+- `HEAD_NODE_NAME`: The name of the Kubernetes head node.
+- `HEAD_NODE_SIZE`: The size of the virtual machine for the head node (e.g., `Standard_D2s_v3`).
+
+### Worker Nodes
+- `WORKER_NODES_NAME`: The name of the Kubernetes worker nodes.
+- `WORKER_NODE_SIZE`: The size of the virtual machines for the worker nodes (e.g., `Standard_D2s_v3`).
+- `WORKER_NODE_COUNT`: The number of worker nodes to deploy.
+
+### Authentication
+- `ADMIN_USERNAME`: The administrator username for the virtual machines.
+- `ADMIN_PASSWORD`: The administrator password for the virtual machines.
+
 ## Usage
 
 ### Deploy Kubernetes Head Node
