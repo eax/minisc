@@ -12,6 +12,10 @@ azure-mgmt-resource = "*"
 azure-mgmt-compute = "*"
 azure-mgmt-network = "*"
 azure-identity = "*"
+fastapi = "*"
+pydantic = "*"
+pytest = "*"
+httpx = "*"
 
 [dev-packages]
 
