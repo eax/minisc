@@ -7,18 +7,23 @@ This project demonstrates how to deploy a Kubernetes cluster on Azure using the 
 ```
 azure
 ├── src
-│   ├── head_node.py          # Logic for deploying the Kubernetes head node
-│   ├── worker_nodes.py       # Logic for deploying Kubernetes worker nodes
-│   ├── kubernetes_deployer.py # Base class for Kubernetes deployment
+│   ├── api
+│   │   └── main.py                 # FastAPI implementation for Azure
+│   ├── head_node.py                # Logic for deploying the Kubernetes head node
+│   ├── worker_nodes.py             # Logic for deploying Kubernetes worker nodes
+│   ├── kubernetes_deployer.py      # Base class for Kubernetes deployment
 │   ├── templates
 │   │   ├── cloud_init_head_node.yaml  # Cloud-init template for head node
 │   │   └── cloud_init_worker_node.yaml # Cloud-init template for worker nodes
 │   └── utils
-│       └── azure_helpers.py  # Azure utility functions
-├── azure_config.py           # Configuration settings for Azure resources
-├── requirements.txt          # Project dependencies
-├── .env                      # Environment variables
-└── README.md                 # Project documentation
+│       └── azure_helpers.py        # Azure utility functions
+├── tests
+│   ├── test_api.py                 # Unit tests for the API
+│   └── test_worker_nodes.py        # Unit tests for worker node deployment
+├── azure_config.py                 # Configuration settings for Azure resources
+├── requirements.txt                # Project dependencies
+├── .env                            # Environment variables
+└── README.md                       # Project documentation
 ```
 
 ## Setup Instructions
