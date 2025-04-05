@@ -24,7 +24,7 @@ class WorkerNodesDeployer(KubernetesDeployer):
         subnet_id = subnet.id
 
         # Load and render cloud-init template
-        template_path = os.path.join(os.path.dirname(__file__), "templates/cloud_init_worker_node.yaml")
+        template_path = os.path.join(os.path.dirname(__file__), "../templates/cloud_init_worker_node.yaml")
         with open(template_path, "r") as file:
             template = Template(file.read())
             cloud_init_script = template.substitute(

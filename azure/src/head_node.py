@@ -42,7 +42,7 @@ class HeadNodeDeployer(KubernetesDeployer):
         print(f"Network interface '{nic_name}' created.")
 
         # Load and render cloud-init template
-        with open("templates/cloud_init_head_node.yaml", "r") as file:
+        with open("../templates/cloud_init_head_node.yaml", "r") as file:
             template = Template(file.read())
             cloud_init_script = template.substitute(
                 POD_NETWORK_CIDR="10.244.0.0/16",
