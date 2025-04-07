@@ -21,11 +21,16 @@ write_files:
     net.ipv4.ip_forward = 1
 
 runcmd:
+  # Load kernel modules and apply sysctl settings
   - modprobe overlay
   - modprobe br_netfilter
   - sysctl --system
+
+  # Disable swap
   - swapoff -a
-  - sed -i '/swap/s/^/#/' /etc/fstab
+  - sed -i '/swap/d' /etc/fstab
+
+  # Install container runtime (containerd)
   - mkdir -p /etc/apt/keyrings
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
   - echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -36,13 +41,32 @@ runcmd:
   - sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
   - systemctl restart containerd
   - systemctl enable containerd
+
+  # Install Kubernetes components
   - curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
   - echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | tee /etc/apt/sources.list.d/kubernetes.list
   - apt-get update
   - apt-get install -y kubelet kubeadm kubectl
   - apt-mark hold kubelet kubeadm kubectl
+
+  # Initialize Kubernetes cluster
   - kubeadm init --pod-network-cidr=${POD_NETWORK_CIDR}
+
+  # Configure kubectl for the admin user
   - mkdir -p /home/${ADMIN_USERNAME}/.kube
   - cp -i /etc/kubernetes/admin.conf /home/${ADMIN_USERNAME}/.kube/config
   - chown $(id -u):$(id -g) /home/${ADMIN_USERNAME}/.kube/config
-  - kubectl --kubeconfig=/etc/kubernetes/admin.conf apply -f ${FLANNEL_URL}
+
+  # Apply network plugin
+  - kubectl --kubeconfig=/etc/kubernetes/admin.conf apply -f ${NETWORK_PLUGIN_URL}
+
+  # Install Helm
+  - curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+  - chmod 700 get_helm.sh
+  - ./get_helm.sh
+
+  # Add Helm repositories
+  - helm repo add stable https://charts.helm.sh/stable
+  - helm repo add bitnami https://charts.bitnami.com/bitnami
+  - helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+  - helm repo update

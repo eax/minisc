@@ -1,4 +1,5 @@
 import os
+from string import Template
 from .kubernetes_deployer import KubernetesDeployer
 
 
@@ -7,12 +8,16 @@ class WorkerNodesDeployer(KubernetesDeployer):
         super().__init__(region)
         self.worker_instances = []
 
-    def deploy_worker_nodes(self, security_group_id, subnet_id, key_name, num_workers=2, instance_type='t2.medium'):
+    def deploy_worker_nodes(self, security_group_id, subnet_id, key_name, num_workers=2, instance_type='t2.medium', master_ip=None, join_token=None):
         try:
-            # Load user data script
-            script_path = os.path.join(os.path.dirname(__file__), '../scripts/worker_init.sh')
-            with open(script_path, 'r') as f:
-                user_data = f.read()
+            # Load cloud-init YAML template
+            template_path = os.path.join(os.path.dirname(__file__), '../templates/cloud-init_worker_node.yaml')
+            with open(template_path, 'r') as f:
+                template = Template(f.read())
+                user_data = template.substitute(
+                    MASTER_IP=master_ip or "",
+                    JOIN_TOKEN=join_token or ""
+                )
 
             # Get latest Amazon Linux 2 AMI
             response = self.ec2.describe_images(

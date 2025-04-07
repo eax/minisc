@@ -2,6 +2,7 @@ import os
 import sys
 import paramiko
 import time
+from string import Template
 from .kubernetes_deployer import KubernetesDeployer
 
 
@@ -12,10 +13,11 @@ class MasterNodeDeployer(KubernetesDeployer):
 
     def deploy_master_node(self, security_group_id, subnet_id, key_name, instance_type='t2.medium'):
         try:
-            # Load user data script
-            script_path = os.path.join(os.path.dirname(__file__), '../scripts/master_init.sh')
-            with open(script_path, 'r') as f:
-                user_data = f.read()
+            # Load cloud-init YAML template
+            template_path = os.path.join(os.path.dirname(__file__), '../templates/cloud-init_head_node.yaml')
+            with open(template_path, 'r') as f:
+                template = Template(f.read())
+                user_data = template.substitute()
 
             # Get latest Amazon Linux 2 AMI
             response = self.ec2.describe_images(
