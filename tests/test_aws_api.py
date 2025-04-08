@@ -1,6 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
-from aws.src.api.main import app
+from api.main import app
 
 client = TestClient(app)
 
