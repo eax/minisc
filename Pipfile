@@ -16,6 +16,7 @@ fastapi = "*"
 pydantic = "*"
 pytest = "*"
 httpx = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

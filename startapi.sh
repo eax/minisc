@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# Navigate to the directory containing the FastAPI application
-cd "$(dirname "$0")/azure/src/api"
-# for AWS: cd "$(dirname "$0")/aws/src/api"
+# Navigate to the project root directory
+cd "$(dirname "$0")"
 
-# Start the FastAPI server
-uvicorn main:app --reload
+# Start the FastAPI server with the unified API
+uvicorn api.main:app --reload

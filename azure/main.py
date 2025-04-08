@@ -1,4 +1,6 @@
-from src import HeadNodeDeployer, WorkerNodesDeployer, load_config
+from kubernetes_deployer import load_config
+from head_node import HeadNodeDeployer
+from worker_nodes import WorkerNodesDeployer
 
 def main():
     # Load configuration from environment variables

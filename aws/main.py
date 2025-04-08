@@ -1,6 +1,6 @@
-from .kubernetes_deployer import KubernetesDeployer
-from .master_node_deployer import MasterNodeDeployer
-from .worker_nodes_deployer import WorkerNodesDeployer
+from kubernetes_deployer import KubernetesDeployer
+from master_node_deployer import MasterNodeDeployer
+from worker_nodes_deployer import WorkerNodesDeployer
 
 
 def main():
