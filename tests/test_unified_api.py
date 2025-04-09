@@ -2,8 +2,8 @@ import pytest
 from fastapi.testclient import TestClient
 from unittest.mock import patch, MagicMock
 
-from api.main import app, get_settings
-from common.provider_factory import CloudProviderFactory
+from minisc.api.main import app, get_settings
+from minisc.common.provider_factory import CloudProviderFactory
 
 client = TestClient(app)
 

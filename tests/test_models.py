@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from common.models import ClusterConfig, WorkerNodesConfig
+from minisc.common.models import ClusterConfig, WorkerNodesConfig
 
 def test_cluster_config_minimal():
     """Test minimal valid cluster config"""
