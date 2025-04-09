@@ -22,7 +22,6 @@ minisc/
 │   │   ├── __init__.py
 │   │   ├── kubernetes_deployer.py # Base class for AWS infrastructure
 │   │   ├── main.py             # AWS-specific CLI runner
-│   │   ├── main_old.py         # Legacy AWS implementation
 │   │   ├── master_node_deployer.py # Logic for deploying AWS master node
 │   │   └── worker_nodes_deployer.py # Logic for deploying AWS worker nodes
 │   ├── common/                 # Shared components
@@ -44,8 +43,8 @@ minisc/
 │   ├── test_models.py          # Tests for shared data models
 │   ├── test_provider_factory.py # Tests for provider factory
 │   └── test_unified_api.py     # Tests for the unified API
-├── main.py                     # Combined CLI runner for both clouds
-├── api_runner.py               # Client script for interacting with the API
+├── api_client.py               # Script for interacting with the API
+├── client.py                   # Unified CLI runner for deploying clusters
 ├── startapi.sh                 # Helper script to start the unified API server
 ├── setup.py                    # Setup script for packaging the module
 ├── requirements.txt            # Python dependencies in standard format
