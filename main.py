@@ -175,8 +175,8 @@ def main():
             else:  # workers only
                 print("=== Deploying Azure Worker Nodes Only ===")
                 # Load configuration
-                from azure.kubernetes_deployer import load_config
-                from azure.worker_nodes import WorkerNodesDeployer
+                from minisc.azure.kubernetes_deployer import load_config
+                from minisc.azure.worker_nodes import WorkerNodesDeployer
                 
                 config = load_config()
                 join_token = input("Enter the Kubernetes join token (from the head node): ").strip()
