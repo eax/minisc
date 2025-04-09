@@ -1,7 +1,7 @@
 import os
 import sys
 from string import Template
-from .kubernetes_deployer import KubernetesDeployer
+from minisc.aws.kubernetes_deployer import KubernetesDeployer
 
 
 class WorkerNodesDeployer(KubernetesDeployer):

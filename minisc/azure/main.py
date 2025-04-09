@@ -1,6 +1,6 @@
-from kubernetes_deployer import load_config
-from head_node import HeadNodeDeployer
-from worker_nodes import WorkerNodesDeployer
+from minisc.azure.kubernetes_deployer import load_config
+from minisc.azure.head_node import HeadNodeDeployer
+from minisc.azure.worker_nodes import WorkerNodesDeployer
 
 def main():
     # Load configuration from environment variables

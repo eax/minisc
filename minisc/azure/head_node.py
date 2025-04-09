@@ -1,6 +1,6 @@
 import base64
 from string import Template
-from .kubernetes_deployer import KubernetesDeployer
+from minisc.azure.kubernetes_deployer import KubernetesDeployer
 
 class HeadNodeDeployer(KubernetesDeployer):
     def create_kubernetes_head_node(self, group_name, vm_name, location, vm_size, vnet_name, subnet_name, admin_username, admin_password):

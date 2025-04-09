@@ -1,6 +1,6 @@
-from kubernetes_deployer import KubernetesDeployer
-from master_node_deployer import MasterNodeDeployer
-from worker_nodes_deployer import WorkerNodesDeployer
+from minisc.aws.kubernetes_deployer import KubernetesDeployer
+from minisc.aws.master_node_deployer import MasterNodeDeployer
+from minisc.aws.worker_nodes_deployer import WorkerNodesDeployer
 
 
 def main():

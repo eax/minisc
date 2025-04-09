@@ -2,11 +2,11 @@ from enum import Enum
 from typing import Union, Dict, Any
 
 # Provider implementations
-from azure.head_node import HeadNodeDeployer as AzureHeadNodeDeployer
-from azure.worker_nodes import WorkerNodesDeployer as AzureWorkerNodesDeployer
-from aws.master_node_deployer import MasterNodeDeployer as AwsMasterNodeDeployer
-from aws.worker_nodes_deployer import WorkerNodesDeployer as AwsWorkerNodesDeployer
-from aws.kubernetes_deployer import KubernetesDeployer as AwsKubernetesDeployer
+from minisc.azure.head_node import HeadNodeDeployer as AzureHeadNodeDeployer
+from minisc.azure.worker_nodes import WorkerNodesDeployer as AzureWorkerNodesDeployer
+from minisc.aws.master_node_deployer import MasterNodeDeployer as AwsMasterNodeDeployer
+from minisc.aws.worker_nodes_deployer import WorkerNodesDeployer as AwsWorkerNodesDeployer
+from minisc.aws.kubernetes_deployer import KubernetesDeployer as AwsKubernetesDeployer
 
 class CloudProvider(Enum):
     AZURE = "azure"

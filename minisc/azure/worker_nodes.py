@@ -10,7 +10,7 @@ from azure.mgmt.compute.models import (
     NetworkInterfaceConfiguration,
     IPConfiguration
 )
-from .kubernetes_deployer import KubernetesDeployer
+from minisc.azure.kubernetes_deployer import KubernetesDeployer
 
 class WorkerNodesDeployer(KubernetesDeployer):
     def create_kubernetes_worker_nodes(self, group_name, vmss_name, location, vm_size, instance_count,

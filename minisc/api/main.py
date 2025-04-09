@@ -4,8 +4,8 @@ import os
 from functools import lru_cache
 from dotenv import load_dotenv
 
-from common.provider_factory import CloudProviderFactory
-from common.models import ClusterConfig, WorkerNodesConfig
+from minisc.common.provider_factory import CloudProviderFactory
+from minisc.common.models import ClusterConfig, WorkerNodesConfig
 
 # Load environment variables from .env file
 load_dotenv()
