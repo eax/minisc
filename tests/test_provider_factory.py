@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import patch, MagicMock
 
-from common.provider_factory import CloudProviderFactory, CloudProvider
+from minisc.common.provider_factory import CloudProviderFactory, CloudProvider
 
 @pytest.fixture
 def azure_config():
