@@ -7,9 +7,9 @@ load_dotenv()
 
 def deploy_azure_cluster(deploy_workers=True):
     """Deploy a Kubernetes cluster on Azure"""
-    from azure.kubernetes_deployer import load_config
-    from azure.head_node import HeadNodeDeployer
-    from azure.worker_nodes import WorkerNodesDeployer
+    from minisc.azure.kubernetes_deployer import load_config
+    from minisc.azure.head_node import HeadNodeDeployer
+    from minisc.azure.worker_nodes import WorkerNodesDeployer
     
     print("=== Deploying Azure Kubernetes Cluster ===")
     
@@ -85,9 +85,9 @@ def deploy_azure_cluster(deploy_workers=True):
 
 def deploy_aws_cluster(deploy_master=True, deploy_workers=True):
     """Deploy a Kubernetes cluster on AWS"""
-    from aws.kubernetes_deployer import KubernetesDeployer
-    from aws.master_node_deployer import MasterNodeDeployer
-    from aws.worker_nodes_deployer import WorkerNodesDeployer
+    from minisc.aws.kubernetes_deployer import KubernetesDeployer
+    from minisc.aws.master_node_deployer import MasterNodeDeployer
+    from minisc.aws.worker_nodes_deployer import WorkerNodesDeployer
     
     print("=== Deploying AWS Kubernetes Cluster ===")
     
