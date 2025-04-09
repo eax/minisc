@@ -6,44 +6,54 @@ This project demonstrates how to deploy Kubernetes clusters across multiple clou
 
 ```
 minisc/
-├── api/
-│   └── main.py                    # Unified FastAPI implementation for both clouds
-├── azure/
-│   ├── __init__.py
-│   ├── config.py                  # Configuration loader for Azure
-│   ├── head_node.py               # Logic for deploying Azure Kubernetes head node
-│   ├── kubernetes_deployer.py     # Base class for Azure Kubernetes deployment
-│   ├── main.py                    # Azure-specific CLI runner
-│   └── worker_nodes.py            # Logic for deploying Azure worker nodes
-├── aws/
-│   ├── __init__.py
-│   ├── kubernetes_deployer.py     # Base class for AWS infrastructure
-│   ├── main.py                    # AWS-specific CLI runner
-│   ├── main_old.py                # Legacy AWS implementation
-│   ├── master_node_deployer.py    # Logic for deploying AWS master node
-│   └── worker_nodes_deployer.py   # Logic for deploying AWS worker nodes
-├── common/
-│   ├── models.py                  # Shared data models for API requests
-│   └── provider_factory.py        # Factory for creating cloud provider instances
-├── templates/
-│   ├── cloud-init_head_node.yaml  # Cloud-init template for head node
-│   └── cloud-init_worker_node.yaml # Cloud-init template for worker nodes
-├── scripts/
-│   ├── master_init.sh             # Bootstrap script for AWS master configuration
-│   ├── worker_init.sh             # Bootstrap script for AWS worker configuration
-│   └── ubuntu/                    # Ubuntu-specific scripts
-│       ├── master_init.sh         # Ubuntu master initialization script
-│       └── worker_init.sh         # Ubuntu worker initialization script
-├── tests/
-│   ├── test_aws_api.py            # Tests for AWS API endpoints
-│   └── test_azure_api.py          # Tests for Azure API endpoints
-├── main.py                        # Combined CLI runner for both clouds
-├── api_runner.py                  # Client script for interacting with the API
-├── startapi.sh                    # Helper script to start the unified API server
-├── Pipfile                        # Python dependencies using pipenv
-├── requirements.txt               # Python dependencies in standard format
-├── .env                           # Environment variables
-└── README.md                      # Project documentation
+├── minisc/                     # Main module directory
+│   ├── __init__.py             # Makes this directory a Python package
+│   ├── api/                    # Unified FastAPI implementation for both clouds
+│   │   ├── __init__.py
+│   │   └── main.py
+│   ├── azure/                  # Azure-specific deployment logic
+│   │   ├── __init__.py
+│   │   ├── config.py           # Configuration loader for Azure
+│   │   ├── head_node.py        # Logic for deploying Azure Kubernetes head node
+│   │   ├── kubernetes_deployer.py # Base class for Azure Kubernetes deployment
+│   │   ├── main.py             # Azure-specific CLI runner
+│   │   └── worker_nodes.py     # Logic for deploying Azure worker nodes
+│   ├── aws/                    # AWS-specific deployment logic
+│   │   ├── __init__.py
+│   │   ├── kubernetes_deployer.py # Base class for AWS infrastructure
+│   │   ├── main.py             # AWS-specific CLI runner
+│   │   ├── main_old.py         # Legacy AWS implementation
+│   │   ├── master_node_deployer.py # Logic for deploying AWS master node
+│   │   └── worker_nodes_deployer.py # Logic for deploying AWS worker nodes
+│   ├── common/                 # Shared components
+│   │   ├── __init__.py
+│   │   ├── models.py           # Shared data models for API requests
+│   │   └── provider_factory.py # Factory for creating cloud provider instances
+│   ├── templates/              # Cloud-init templates for node initialization
+│   │   ├── cloud-init_head_node.yaml
+│   │   └── cloud-init_worker_node.yaml
+├── scripts/                    # Helper scripts for node initialization
+│   ├── master_init.sh          # Bootstrap script for AWS master configuration
+│   ├── worker_init.sh          # Bootstrap script for AWS worker configuration
+│   └── ubuntu/                 # Ubuntu-specific scripts
+│       ├── master_init.sh      # Ubuntu master initialization script
+│       └── worker_init.sh      # Ubuntu worker initialization script
+├── tests/                      # Test suite
+│   ├── test_aws_api.py         # Tests for AWS API endpoints
+│   ├── test_azure_api.py       # Tests for Azure API endpoints
+│   ├── test_models.py          # Tests for shared data models
+│   ├── test_provider_factory.py # Tests for provider factory
+│   └── test_unified_api.py     # Tests for the unified API
+├── main.py                     # Combined CLI runner for both clouds
+├── api_runner.py               # Client script for interacting with the API
+├── startapi.sh                 # Helper script to start the unified API server
+├── setup.py                    # Setup script for packaging the module
+├── requirements.txt            # Python dependencies in standard format
+├── Pipfile                     # Python dependencies using pipenv
+├── Pipfile.lock                # Lock file for pipenv dependencies
+├── .env                        # Environment variables
+├── pytest.ini                  # Pytest configuration
+└── README.md                   # Project documentation
 ```
 
 ## Setup Instructions
